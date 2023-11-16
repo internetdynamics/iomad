@@ -432,6 +432,26 @@ class renderer_base {
     }
 
     /**
+     * Return the company's category URL, if any.
+     *
+     * @param int $maxwidth The maximum width, or null when the maximum width does not matter.
+     * @param int $maxheight The maximum height, or null when the maximum height does not matter.
+     * @return moodle_url|false
+     */
+    public function get_category_url() {
+        global $CFG, $DB, $SESSION;
+	$url = "";
+
+        // IOMAD
+        if (!empty($SESSION->currenteditingcompany)) {
+            $company = $DB->get_record('company', array('id'=>$SESSION->currenteditingcompany));
+            $url = '/course/index.php?categoryid='.$company->category;
+        }
+
+        return $url;
+    }
+
+    /**
      * Whether we should display the logo in the navbar.
      *
      * We will when there are no main logos, and we have compact logo.
