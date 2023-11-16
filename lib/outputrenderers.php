@@ -440,12 +440,12 @@ class renderer_base {
      */
     public function get_category_url() {
         global $CFG, $DB, $SESSION;
-	$url = "";
+	      $url = "";
 
         // IOMAD
         if (!empty($SESSION->currenteditingcompany)) {
             $company = $DB->get_record('company', array('id'=>$SESSION->currenteditingcompany));
-            $url = '/course/index.php?categoryid='.$company->category;
+            $url = $CFG->wwwroot . '/course/index.php?categoryid='.$company->category;
         }
 
         return $url;
