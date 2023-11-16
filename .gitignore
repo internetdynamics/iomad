@@ -55,3 +55,15 @@ moodle-plugin-ci.phar
 .hugo_build.lock
 phpcs.xml
 jsconfig.json
+
+.htaccess
+favicon.gif
+favicon.ico
+availability/condition
+blocks/grade_me
+local/staticpage
+payment/gateway/stripe
+theme/academi
+theme/adaptable
+theme/iomadmoon
+theme/moove
