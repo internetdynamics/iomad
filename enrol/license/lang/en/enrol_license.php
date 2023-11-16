@@ -45,7 +45,7 @@ $string['longtimenosee_help'] = 'If users haven\'t accessed a course for a long 
 $string['maxenrolled'] = 'Max enrolled users';
 $string['maxenrolled_help'] = 'Specifies the maximum number of users that can license enrol. 0 means no limit.';
 $string['maxenrolledreached'] = 'Maximum number of users allowed to license-enrol was already reached.';
-$string['nolicenseinformationfound'] = 'Your account does not have a valid license to access this course.  If you require access contact your company manager to arrange a license.';
+$string['nolicenseinformationfound'] = 'Your account does not have a valid license to access this course.  If you require access contact your organization manager to arrange a license.';
 $string['password'] = 'Enrolment key';
 $string['password_help'] = 'An enrolment key enables access to the course to be restricted to only those who know the key.
 

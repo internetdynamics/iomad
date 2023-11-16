@@ -25,7 +25,7 @@ $string['both'] = 'Both';
 $string['clicktoadd'] = 'Click <i class="fa fa-plus text-muted"></i> or drag <i class="fa fa-arrows text-muted"></i> to add';
 $string['clicktoremove'] = 'Click <i class="fa fa-trash text-muted"></i> to remove. Drag <i class="fa fa-arrows text-muted"></i> to order or remove.';
 $string['closeeye'] = 'Make unavailable';
-$string['companymismatch'] = 'Path company does not match your selected company';
+$string['companymismatch'] = 'Path organization does not match your selected organization';
 $string['confirm'] = 'Confirm';
 $string['confirmcopy'] = 'Do you want to completely duplicate this path?';
 $string['confirmdelete'] = 'Do you really want to delete this path? Action cannot be reversed.';

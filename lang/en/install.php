@@ -232,7 +232,7 @@ $string['safemodehelp'] = '<p>Moodle may have a variety of problems with safe mo
    it probably won\'t be allowed to create new files.</p>
 
 <p>Safe mode is usually only enabled by paranoid public web hosts, so you may have
-   to just find a new web hosting company for your Moodle site.</p>
+   to just find a new web hosting organization for your Moodle site.</p>
 
 <p>You can try continuing the install if you like, but expect a few problems later on.</p>';
 $string['sessionautostart'] = 'Session auto start';

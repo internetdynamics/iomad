@@ -534,8 +534,8 @@ $string['confirmdeladmin'] = 'Do you really want to remove user <strong>{$a}</st
 // Iomad additions.
 $string['archetypeclientadministrator'] = 'Iomad client administrator';
 $string['archetypeclientreporter'] = 'Iomad client reporter';
-$string['archetypecompanymanager'] = 'Company manager';
-$string['archetypecompanydepartmentmanager'] = 'Company department manager';
-$string['archetypecompanycourseeditor'] = 'Company course editing teacher';
-$string['archetypecompanyreporter'] = 'Company reporter';
-$string['archetypecompanycoursenoneditor'] = 'Company course non editing teacher';
+$string['archetypecompanymanager'] = 'Organization manager';
+$string['archetypecompanydepartmentmanager'] = 'Organization department manager';
+$string['archetypecompanycourseeditor'] = 'Organization course editing teacher';
+$string['archetypecompanyreporter'] = 'Organization reporter';
+$string['archetypecompanycoursenoneditor'] = 'Organization course non editing teacher';

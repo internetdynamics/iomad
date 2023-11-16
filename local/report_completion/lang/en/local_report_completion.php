@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['companies'] = 'Companies';
+$string['companies'] = 'Organizations';
 $string['completed'] = 'Completed';
 $string['course'] = 'Course';
 $string['report_completion:view'] = 'View course iomad progress report';
@@ -30,7 +30,7 @@ $string['completiondate'] = 'Completion date';
 $string['completionnotenabled'] = 'Completion tracking is not enabled for this course (no report data available)';
 $string['coursechart'] = 'Draw overview chart for course';
 $string['iomad_completion:view'] = 'iomad completion report';
-$string['error'] = 'Error finding custom profile field for company';
+$string['error'] = 'Error finding custom profile field for organization';
 $string['inprogress'] = 'In progress';
 $string['name'] = 'Name';
 $string['nodata'] = 'No report data';
@@ -39,7 +39,7 @@ $string['nousers'] = 'No users in this course';
 $string['participant'] = 'Participant';
 $string['percentage'] = 'Percent Complete';
 $string['pluginname'] = 'Completion report by course';
-$string['privacy:metadata'] = 'The Local IOMAD course completion report only shows data stored in other locations.';
+$string['privacy:metadata'] = 'The Local Organization Course completion report only shows data stored in other locations.';
 $string['repcoursecompletion'] = 'Completion report by course';
 $string['remaining'] = 'Remaining';
 $string['reportselect'] = 'Report filter';
@@ -64,7 +64,7 @@ $string['timestarted'] = 'Date started';
 $string['timecompleted'] = 'Date completed';
 $string['finalscore'] = 'Final score';
 $string['downloadcsv'] = 'Download as CSV file';
-$string['invalidcourse'] = 'Course ID passed is not valid for this company/department';
+$string['invalidcourse'] = 'Course ID passed is not valid for this organization/department';
 $string['firstname'] = 'Firstname';
 $string['lastname'] = 'Lastname';
 $string['email'] = 'Email address';
@@ -93,6 +93,6 @@ $string['userlink'] = 'Display users';
 $string['used'] = 'Active';
 $string['unused'] = 'Inactive';
 $string['notapplicable'] = 'N/A';
-$string['showpercentageusers'] = 'Percentage of company';
-$string['hidepercentageusers'] = 'Total of company';
+$string['showpercentageusers'] = 'Percentage of organization';
+$string['hidepercentageusers'] = 'Total of organization';
 $string['beginningoftime'] = 'Beginning of time';

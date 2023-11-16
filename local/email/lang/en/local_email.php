@@ -23,7 +23,7 @@
 
 $string['add_template_button'] = 'Override';
 $string['addnewtemplate'] = 'Override a default template';
-$string['applytemplateset'] = 'Apply templateset \'{$a}\' to companies';
+$string['applytemplateset'] = 'Apply templateset \'{$a}\' to organizations';
 $string['backtocompanytemplates'] = 'Finish editing template set';
 $string['blocktitle'] = 'Email templates';
 $string['body'] = 'Body';
@@ -85,14 +85,14 @@ $string['select_course'] = 'Select course';
 $string['send_button'] = 'Send';
 $string['send_emails'] = 'Send e-mails';
 $string['setdefault'] = 'Set default';
-$string['setdefaulttemplatesetfull'] = 'Do you want to change the default company template set to {$a}?';
+$string['setdefaulttemplatesetfull'] = 'Do you want to change the default organization template set to {$a}?';
 $string['signature'] = 'Signature';
 $string['signatureseparator'] = "<p>--</p>";
 $string['subject'] = 'Subject';
 $string['template_list_title'] = 'Email Templates';
 $string['templateaddedok'] = 'Template was successfully added.';
 $string['templateresetok'] = 'Template for {$a} has been reset successfully';
-$string['templatesetsetdefault'] = 'The default company template set has been updated';
+$string['templatesetsetdefault'] = 'The default organization template set has been updated';
 $string['templatesetdeleted'] = 'Template set deleted successfully';
 $string['templatesetname'] = 'Template set name';
 $string['templatesetname_help'] = 'This is name which the template set will be referenced by.';
@@ -101,7 +101,7 @@ $string['templatetype'] = 'Template type';
 $string['templateupdatedok'] = 'Template was successfully updated.';
 $string['toother'] = 'Manual To address';
 $string['unsetdefault'] = 'Unset default';
-$string['unsetdefaulttemplatesetfull'] = 'Do you want to remove the default company template set {$a}?';
+$string['unsetdefaulttemplatesetfull'] = 'Do you want to remove the default organization template set {$a}?';
 $string['weekly'] = 'Weekly';
 
 $string['privacy:metadata:local_email:id'] = 'ID of record in local_email table';
@@ -121,12 +121,12 @@ $string['admin_deleted_name'] = 'Manager role removed';
 $string['admin_deleted_name_help'] = 'This email is sent out when a manager role is removed from a user.';
 $string['approval_name'] = 'Manager course request approval';
 $string['approved_name'] = 'User course access approved';
-$string['company_licenseassigned_name'] = 'License assigned to company';
-$string['company_licenseassigned_name_help'] = 'This email is sent out to company manager when a license has been created for the company.';
-$string['company_suspended_name'] = 'Company suspended';
-$string['company_suspended_name_help'] = 'This email is sent out to company managers when their company is suspended.';
-$string['company_unsuspended_name'] = 'Company unsuspended';
-$string['company_unsuspended_name_help'] = 'This email is sent out to company managers when their company is unsuspended';
+$string['company_licenseassigned_name'] = 'License assigned to organization';
+$string['company_licenseassigned_name_help'] = 'This email is sent out to organization manager when a license has been created for the organization.';
+$string['company_suspended_name'] = 'Organization suspended';
+$string['company_suspended_name_help'] = 'This email is sent out to organization managers when their organization is suspended.';
+$string['company_unsuspended_name'] = 'Organization unsuspended';
+$string['company_unsuspended_name_help'] = 'This email is sent out to organization managers when their organization is unsuspended';
 $string['completion_course_user_name'] = 'User course completion';
 $string['completion_course_user_name_help'] = 'This email is sent out when a user successfully completes a course';
 $string['course_classroom_approval_name'] = 'Manager training event approval request';
@@ -138,7 +138,7 @@ $string['course_classroom_approval_request_name'] = 'User training event request
 $string['courseclassroom_approved_name'] = 'User training event approved';
 $string['course_completed_manager_name'] = 'Manager course completed report';
 $string['course_not_started_warning_name'] = 'Course not started warning';
-$string['course_not_started_warning_name_help'] = 'This email is sent out to a user when they have been given access to a course and have not started it within the defined timeframe in the IOMAD course settings.';
+$string['course_not_started_warning_name_help'] = 'This email is sent out to a user when they have been given access to a course and have not started it within the defined timeframe in the Organization Course settings.';
 $string['user_added_to_course_name'] = 'User enrolled on course';
 $string['invoice_ordercomplete_name'] = 'User invoice order created';
 $string['invoice_ordercomplete_admin_name'] = 'Admin invoice order created';
@@ -151,7 +151,7 @@ $string['user_removed_from_event_teacher_name'] = 'User training event cancelled
 $string['user_removed_from_event_waitlist_name'] = 'User training event removed from waitlist';
 $string['license_allocated_name'] = 'User license allocated';
 $string['licensepoolexpiring_name'] = 'License expiry date warning';
-$string['licensepoolexpiring_name_help'] = 'This email is sent out to company managers when a license is about to expire.';
+$string['licensepoolexpiring_name_help'] = 'This email is sent out to organization managers when a license is about to expire.';
 $string['licensepoolwarning_name'] = 'License useage warning';
 $string['licensepoolwarning_name_help'] = 'This email is sent out when the number of allocated slots in the license is reached';
 $string['license_reminder_name'] = 'User license activation reminder';
@@ -173,7 +173,7 @@ $string['user_deleted_name_help'] = 'This email is sent out to a user when their
 $string['user_programcompleted_name'] = 'User course program completed';
 $string['user_programcompleted_name_help'] = 'This email is sent out when a user completes all of the courses within a program license';
 $string['user_promoted_name'] = 'User promoted to manager';
-$string['user_promoted_name_help'] = 'This email is sent out when a user is promoted to a manager in a company';
+$string['user_promoted_name_help'] = 'This email is sent out when a user is promoted to a manager in a organization';
 $string['user_suspended_name'] = 'User suspended';
 $string['user_suspended_name_help'] = 'This email is sent out to a user when the user is suspended.';
 $string['user_unsuspended_name'] = 'User unsuspended';
@@ -263,7 +263,7 @@ Location : {Classroom_Name}<br>
 Address : {Classroom_Address}<br>
           {Classroom_City} {Classroom_Postcode}';
 
-$string['course_classroom_manager_denied_subject'] = 'Face to face training event approval denied by company manager';
+$string['course_classroom_manager_denied_subject'] = 'Face to face training event approval denied by organization manager';
 $string['course_classroom_manager_denied_body'] = '<p>The approval request for {Approveuser_FirstName} {Approveuser_LastName} has been rejected by {User_FirstName} {User_LastName} ({User_Email}) for {Event_Name} at the following event -</p>
 <br>
 Time : {Classroom_Time}<br>
@@ -483,11 +483,11 @@ $string['completion_expiry_warn_supervisor_subject'] = 'Notice: Course {Course_F
 $string['completion_expiry_warn_supervisor_body'] = '<p>The training for {User_FirstName} {User_LastName} in course {Course_FullName} will expiry shortly.  Please arrange for them to retake this training if appropriate.</p>';
 $string['licensepoolwarning_subject'] = "90% License pool used {License_Name}, {License_ID}";
 $string['licensepoolwarning_body'] = "<p>Hi {User_FirstName} {User_LastName}</p>
-<p>This message is to notify your company account {Company_Name} has used 90% of the license pool {License_Name}, {License_ID} . You will not be able to allocate further licenses once you reach 100% usage.</p>
+<p>This message is to notify your organization account {Company_Name} has used 90% of the license pool {License_Name}, {License_ID} . You will not be able to allocate further licenses once you reach 100% usage.</p>
 <p>Please contact your Fletdefense Program Manager for details</p>";
 $string['licensepoolexpiring_subject'] = "Alert: License pool expiration {License_Name}  {License_Expirydate}, {License_ID}";
 $string['licensepoolexpiring_body'] = "<p>Hi {User_FirstName} {User_LastName}</p>
-<p>This message is to notify your company account {Company_Name} that that your program license {License_Name}, {License_ID} is expiring on  {License_Expirydate}.
+<p>This message is to notify your organization account {Company_Name} that that your program license {License_Name}, {License_ID} is expiring on  {License_Expirydate}.
 You will not be able to allocate further licenses to users once you reach expiration date. Please contact your Program Manager if you have further questions</p>";
 $string['user_promoted_subject'] = 'New role granted';
 $string['user_promoted_body'] = "<p>Hello {User_FirstName} {User_LastName},</p>
@@ -502,7 +502,7 @@ $string['user_deleted_body'] = "<p>Hello {User_FirstName} {User_LastName},</p>
 <p>Your email: {User_Email}</p>";
 $string['admin_deleted_subject'] = "Account has been demoted";
 $string['admin_deleted_body'] = "<p>Hello {User_Firstname} {User_Lastname},</p>
-<p>Your admin privileges have been revoked on {SiteURL}. You no longer have access to manage your company</p>
+<p>Your admin privileges have been revoked on {SiteURL}. You no longer have access to manage your organization</p>
 <p>Your email: {User_Email}</p><p>If you feel that this is in error, please contact your manager.</p>";
 $string['user_suspended_subject'] = "Account has been suspended";
 $string['user_suspended_body'] = "<p>Hello {User_FirstName} {User_LastName},</p>
@@ -514,17 +514,17 @@ $string['user_unsuspended_body'] = "<p>Hello {User_FirstName} {User_LastName},</
 <p>Your account has been unsuspended on {SiteURL}. You now have access to any of your training courses</p>
 <p>If you have any further questions, please contact your manager</p>
 <p>Your email: {User_Email}</p>";
-$string['company_suspended_subject'] = "Company account has been suspended";
+$string['company_suspended_subject'] = "Organization account has been suspended";
 $string['company_suspended_body'] = "<p>Hello {User_FirstName} {User_LastName},</p>
-<p>Your company account has been suspended on {SiteURL}. You no longer have access to manage your company</p>
+<p>Your organization account has been suspended on {SiteURL}. You no longer have access to manage your organization</p>
 <p>Your email: {User_Email}</p><p>If you feel that this is in error, please contact support</p>";
-$string['company_unsuspended_subject'] = "Company account has been unsuspended";
+$string['company_unsuspended_subject'] = "Organization account has been unsuspended";
 $string['company_unsuspended_body'] = "<p>Hello {User_FirstName} {User_LastName},</p>
-<p>Your company account has been unsuspended on {SiteURL}. You now have access to manage your company</p>
+<p>Your organization account has been unsuspended on {SiteURL}. You now have access to manage your organization</p>
 <p>Your email: {User_Email}</p><p>If you have any further questions, please contact support</p>";
 $string['company_licenseassigned_subject'] = "New Training assigned to {Company_Name}";
 $string['company_licenseassigned_body'] = "<p>Dear {User_FirstName} {User_LastName},</p>
-<p>New courses have been allocated to your company on {SiteURL}.</p>
+<p>New courses have been allocated to your organization on {SiteURL}.</p>
 <p>Please log in using your username {User_Username} to manage this.</p>";
 $string['microlearning_nugget_scheduled_name'] = 'Microlearning nugget scheduled for user';
 $string['microlearning_nugget_scheduled_name_help'] = 'This email is sent out to a user when a microlearning nugget within a microlearning thread is scheduled.';

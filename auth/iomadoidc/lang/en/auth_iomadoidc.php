@@ -285,7 +285,7 @@ $string['update_onlogin_and_usersync'] = 'On every login and every user sync tas
 // Remote fields.
 $string['settings_fieldmap_feild_not_mapped'] = '(not mapped)';
 $string['settings_fieldmap_field_city'] = 'City';
-$string['settings_fieldmap_field_companyName'] = 'Company Name';
+$string['settings_fieldmap_field_companyName'] = 'Organization Name';
 $string['settings_fieldmap_field_objectId'] = 'Object ID';
 $string['settings_fieldmap_field_country'] = 'Country';
 $string['settings_fieldmap_field_department'] = 'Department';

@@ -31,4 +31,4 @@ $string['pleaselogin'] = 'Please login to see online users.';
 $string['pluginname'] = 'IOMAD users online';
 $string['privacy:metadata'] = 'The IOMAD Online Users block only shows data stored in other locations.';
 $string['timetosee'] = 'Remove after inactivity (minutes)';
-$string['title'] = 'Company online users';
+$string['title'] = 'Organization online users';

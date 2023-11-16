@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['companies'] = 'Companies';
+$string['companies'] = 'Organizations';
 $string['completed'] = 'Completed';
 $string['course'] = 'Course';
 $string['report_user_logins:view'] = 'View the IOMAD user login report';
@@ -29,7 +29,7 @@ $string['completiondate'] = 'Completion date';
 $string['completionnotenabled'] = 'Completion tracking is not enabled for this course (no report data available)';
 $string['coursechart'] = 'Draw overview chart for course';
 $string['iomad_completion:view'] = 'iomad completion report';
-$string['error'] = 'Error finding custom profile field for company';
+$string['error'] = 'Error finding custom profile field for organization';
 $string['used'] = 'Used';
 $string['name'] = 'Name';
 $string['nodata'] = 'No report data';
@@ -67,7 +67,7 @@ $string['timestarted'] = 'Date started';
 $string['timecompleted'] = 'Date completed';
 $string['finalscore'] = 'Final score';
 $string['downloadcsv'] = 'Download as CSV file';
-$string['invalidcourse'] = 'Course ID passed is not valid for this company/department';
+$string['invalidcourse'] = 'Course ID passed is not valid for this organization/department';
 $string['firstname'] = 'Firstname';
 $string['lastname'] = 'Lastname';
 $string['email'] = 'Email address';

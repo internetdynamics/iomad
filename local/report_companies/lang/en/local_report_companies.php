@@ -21,25 +21,25 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['report_companies:view'] = 'View companies report';
-$string['childcompany'] = 'This is a child company. Parent is \'{$a}\'';
-$string['companies'] = 'Companies';
+$string['report_companies:view'] = 'View organizations report';
+$string['childcompany'] = 'This is a child organization. Parent is \'{$a}\'';
+$string['companies'] = 'Organizations';
 $string['completed'] = 'Completed';
 $string['course'] = 'Course';
-$string['coursemanagers'] = 'Company managers';
-$string['courseusers'] = 'Company users';
+$string['coursemanagers'] = 'Organization managers';
+$string['courseusers'] = 'Organization users';
 $string['departmentmanagers'] = 'Department managers';
-$string['iomad_companies:view'] = 'IOMAD companies report';
-$string['nomanagers'] = 'No managers specified for this company';
-$string['nousers'] = 'No users specified for this company';
+$string['iomad_companies:view'] = 'Organizations report';
+$string['nomanagers'] = 'No managers specified for this organization';
+$string['nousers'] = 'No users specified for this organization';
 $string['overview'] = 'Overview';
-$string['pluginname'] = 'IOMAD company overview report';
-$string['privacy:metadata'] = 'The Local IOMAD company overview report only shows data stored in other locations.';
+$string['pluginname'] = 'Channel overview report';
+$string['privacy:metadata'] = 'The Local Channel overview report only shows data stored in other locations.';
 $string['totalusercount'] = 'Total number of users : {$a}';
 $string['totalcoursecount'] = 'Total number of courses : {$a}';
-$string['courses'] = 'Company courses';
-$string['nocourses'] = 'No courses specified for this company';
+$string['courses'] = 'Organization courses';
+$string['nocourses'] = 'No courses specified for this organization';
 $string['completionreportlink'] = 'Completion information';
-$string['themeinfo'] = 'Company theme';
+$string['themeinfo'] = 'Organization theme';
 $string['themedetails'] = 'Theme details : ';
 $string['notheme'] = 'No theme is defined';

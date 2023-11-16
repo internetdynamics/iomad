@@ -22,14 +22,14 @@
  */
 
 $string['attendance'] = 'Attendees';
-$string['companies'] = 'Companies';
+$string['companies'] = 'Organizations';
 $string['completed'] = 'Completed';
 $string['course'] = 'Course';
 $string['report_attendance:view'] = 'View course iomad attendance report';
 $string['completiondate'] = 'Completion date';
 $string['completionnotenabled'] = 'Completion tracking is not enabled for this course (no report data available)';
 $string['iomad_attendance:view'] = 'iomad attendance report';
-$string['error'] = 'Error finding custom profile field for company';
+$string['error'] = 'Error finding custom profile field for organization';
 $string['event'] = 'Training event - ';
 $string['inprogress'] = 'In progress';
 $string['name'] = 'Name';
@@ -64,4 +64,4 @@ $string['datestarted'] = 'Date allocated/started';
 $string['datecompleted'] = 'Date completed';
 $string['finalscore'] = 'Final score';
 $string['downloadcsv'] = 'Download as CSV file';
-$string['invalidcourse'] = 'Course ID passed is not valid for this company/department';
+$string['invalidcourse'] = 'Course ID passed is not valid for this organization/department';
