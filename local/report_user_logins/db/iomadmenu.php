@@ -34,8 +34,8 @@ function local_report_user_logins_menu() {
                 'cap' => 'local/report_user_logins:view',
                 'icondefault' => 'report',
                 'style' => 'report',
-                'icon' => 'fa-group',
-                'iconsmall' => 'fa-bar-chart-o',
+                'icon' => 'fa-user-group',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

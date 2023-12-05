@@ -35,7 +35,7 @@ function local_report_emails_menu() {
                 'icondefault' => 'report',
                 'style' => 'report',
                 'icon' => 'fa-envelope',
-                'iconsmall' => 'fa-bar-chart-o',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

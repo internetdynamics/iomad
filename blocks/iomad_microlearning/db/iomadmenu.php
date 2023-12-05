@@ -45,7 +45,7 @@ function block_iomad_microlearning_menu() {
             'cap' => 'block/iomad_microlearning:assign_threads',
             'icondefault' => 'users',
             'style' => 'micro',
-            'icon' => 'fa-group',
+            'icon' => 'fa-user-group',
             'iconsmall' => 'fa-microchip'
         ),
     );

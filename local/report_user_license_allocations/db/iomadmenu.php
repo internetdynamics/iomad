@@ -35,7 +35,7 @@ function local_report_user_license_allocations_menu() {
                 'icondefault' => 'report',
                 'style' => 'report',
                 'icon' => 'fa-user-secret',
-                'iconsmall' => 'fa-bar-chart-o',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

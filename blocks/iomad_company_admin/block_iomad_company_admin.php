@@ -226,7 +226,7 @@ class block_iomad_company_admin extends block_base {
         if (iomad::has_capability('block/iomad_reports:view', $context)) {
             $tabs[] = [
                 'category' => 'Reports',
-                'icon' => 'fa-bar-chart-o',
+                'icon' => 'fa-chart-bar',
                 'selected' => $selected,
                 'label' => get_string('reports', 'block_iomad_company_admin')
             ];

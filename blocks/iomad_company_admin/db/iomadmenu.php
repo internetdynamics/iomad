@@ -67,7 +67,7 @@ function block_iomad_company_admin_menu() {
                 'cap' => 'block/iomad_company_admin:edit_departments',
                 'icondefault' => 'managedepartment',
                 'style' => 'department',
-                'icon' => 'fa-group',
+                'icon' => 'fa-user-group',
                 'iconsmall' => 'fa-gear'
             ),
             'userprofiles' => array(
@@ -122,7 +122,7 @@ function block_iomad_company_admin_menu() {
                 'cap' => 'block/iomad_company_admin:company_manager',
                 'icondefault' => 'assigndepartmentusers',
                 'style' => 'department',
-                'icon' => 'fa-group',
+                'icon' => 'fa-user-group',
                 'iconsmall' => 'fa-chevron-circle-right'
             ),
             'assignusertocompany' => array(
@@ -156,7 +156,7 @@ function block_iomad_company_admin_menu() {
                 'cap' => 'block/iomad_company_admin:user_upload',
                 'icondefault' => 'down',
                 'style' => 'user',
-                'icon' => 'fa-group',
+                'icon' => 'fa-user-group',
                 'iconsmall' => 'fa-download',
             ),
             'createcourse' => array(
@@ -211,7 +211,7 @@ function block_iomad_company_admin_menu() {
                 'cap' => 'block/iomad_company_admin:edit_groups',
                 'icondefault' => 'groupsedit',
                 'style' => 'group',
-                'icon' => 'fa-group',
+                'icon' => 'fa-user-group',
                 'iconsmall' => 'fa-gear',
             ),
             'assigngroups' => array(
@@ -222,7 +222,7 @@ function block_iomad_company_admin_menu() {
                 'cap' => 'block/iomad_company_admin:assign_groups',
                 'icondefault' => 'groupsassign',
                 'style' => 'group',
-                'icon' => 'fa-group',
+                'icon' => 'fa-user-group',
                 'iconsmall' => 'fa-plus-square',
             ),
             'classrooms' => array(

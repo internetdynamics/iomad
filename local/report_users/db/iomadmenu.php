@@ -35,7 +35,7 @@ function local_report_users_menu() {
                 'icondefault' => 'report',
                 'style' => 'report',
                 'icon' => 'fa-users',
-                'iconsmall' => 'fa-bar-chart-o',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

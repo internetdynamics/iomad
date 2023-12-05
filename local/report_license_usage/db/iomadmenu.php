@@ -35,7 +35,7 @@ function local_report_license_usage_menu() {
                 'icondefault' => 'report',
                 'style' => 'report',
                 'icon' => 'fa-legal',
-                'iconsmall' => 'fa-bar-chart-o',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

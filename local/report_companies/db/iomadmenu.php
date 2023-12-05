@@ -35,7 +35,7 @@ function local_report_companies_menu() {
                 'icondefault' => 'report',
                 'style' => 'report',
                 'icon' => 'fa-building',
-                'iconsmall' => 'fa-bar-chart-o',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

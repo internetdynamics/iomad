@@ -115,7 +115,7 @@ class block_iomad_microlearning_thread_table extends table_sql {
             $html .= '<a href="' . $schedulelink . '" title="' . get_string('threadschedule', 'block_iomad_microlearning') .'"><i class="fa fa-list-alt"></i></a>&nbsp';
         }
         if (iomad::has_capability('block/iomad_microlearning:assign_threads', $context)) {
-            $html .= '<a href="' . $userlink . '" title="' . get_string('learningusers', 'block_iomad_microlearning') .'"><i class="fa fa-group"></i></a>&nbsp';
+            $html .= '<a href="' . $userlink . '" title="' . get_string('learningusers', 'block_iomad_microlearning') .'"><i class="fa fa-user-group"></i></a>&nbsp';
         }
         if (iomad::has_capability('block/iomad_microlearning:thread_clone', $context)) {
             $html .= '<a href="' . $clonelink . '" title="' . get_string('clonethread', 'block_iomad_microlearning') .'"><i class="fa fa-clone"></i></a>';

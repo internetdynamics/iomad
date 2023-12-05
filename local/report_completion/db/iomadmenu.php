@@ -34,8 +34,8 @@ function local_report_completion_menu() {
                 'cap' => 'local/report_completion:view',
                 'icondefault' => 'report',
                 'style' => 'report',
-                'icon' => 'fa-check-square-o',
-                'iconsmall' => 'fa-bar-chart-o',
+                'icon' => 'fa-square-check',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

@@ -34,8 +34,8 @@ function local_report_attendance_menu() {
                 'cap' => 'local/report_attendance:view',
                 'icondefault' => 'report',
                 'style' => 'report',
-                'icon' => 'fa-clock-o',
-                'iconsmall' => 'fa-bar-chart-o',
+                'icon' => 'fa-clock',
+                'iconsmall' => 'fa-chart-bar',
             ),
         );
 }

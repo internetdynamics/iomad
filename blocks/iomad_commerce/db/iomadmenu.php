@@ -35,7 +35,7 @@ function block_iomad_commerce_menu() {
             'icondefault' => 'courses',
             'style' => 'ecomm',
             'icon' => 'fa-file-text',
-            'iconsmall' => 'fa-money'
+            'iconsmall' => 'fa-money-bill'
         ),
         'Orders' => array(
             'category' => 'ECommerceAdmin',
