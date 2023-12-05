@@ -443,7 +443,7 @@ password: {User_Newpassword}<br>
 $string['user_create_subject'] = 'A new on-line learning account has been created for you';
 $string['user_create_body'] = '<p>Dear {User_FirstName},</p>
 
-<p>A new user account has been created for you on the \'Training Management System\'
+<p>A new user account has been created for you on the \'Virtual Christianity Learning Community\'
 and you have been issued with a new temporary password.</p>
 
 <p>Your current login information is now:<p>
@@ -452,7 +452,7 @@ password: {User_Newpassword}<br>
 (you will have to change your password
 when you login for the first time)</p>
 
-<p>To start using \'Training Management System\', login at</p>
+<p>To start using the \'Virtual Christianity Learning Community\', login at</p>
 <p><a href="{LinkURL}">{LinkURL}</a></p>
 
 <p>In most mail programs, this should appear as a blue link
