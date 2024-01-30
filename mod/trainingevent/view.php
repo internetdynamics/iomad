@@ -1266,6 +1266,7 @@ if (!$event = $DB->get_record('trainingevent', array('id' => $cm->instance))) {
             }
         }
         // Output the attendees.
+        $footer_shown = false;
         if (!empty($view) && has_capability('mod/trainingevent:viewattendees', $context)) {
             // Get the associated department id.
             $company = new company($location->companyid);
@@ -1362,7 +1363,11 @@ if (!$event = $DB->get_record('trainingevent', array('id' => $cm->instance))) {
                     echo '<br><input type="submit" value="' . get_string('grade', 'grades') . '" />';
                 }
                 echo $OUTPUT->footer();
+                $footer_shown = true;
             }
+        }
+        if (!$footer_shown) {
+            echo $OUTPUT->footer();
         }
     }
 }
