@@ -93,6 +93,7 @@ class cm implements renderable {
             'indent' => ($format->uses_indentation()) ? $cm->indent : 0,
             'module' => $cm->modname,
             'plugin' => 'mod_' . $cm->modname,
+            'courseurl' => course_get_url($course)->out(),
         ];
 
         // Check the user access type to this cm.
