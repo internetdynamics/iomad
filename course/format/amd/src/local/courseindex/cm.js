@@ -88,6 +88,7 @@ export default class Component extends DndCmItem {
         });
         const url = new URL(window.location.href);
         const anchor = url.hash.replace('#', '');
+
         // Check if the current url is the cm url.
         if (window.location.href == cm.url
             || (window.location.href.includes(course.baseurl) && anchor == cm.anchor)

@@ -308,7 +308,6 @@ export default class Component extends BaseComponent {
      * @param {Array} allitems the list of html elements that can be placed in the container
      */
     _fixOrder(container, neworder, allitems) {
-
         // Empty lists should not be visible.
         if (!neworder.length) {
             container.classList.add('hidden');
