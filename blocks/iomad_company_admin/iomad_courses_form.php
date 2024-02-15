@@ -45,6 +45,10 @@ $deleteid = optional_param('deleteid', 0, PARAM_INT);
 $confirm = optional_param('confirm', null, PARAM_ALPHANUM);
 $edit = optional_param('edit', -1, PARAM_BOOL);
 
+$private = $USER->editing; // "Edit mode" SEB
+$shown = optional_param('shown', '', PARAM_CLEAN); // SEB
+
+
 $params = array();
 
 $params['companyid'] = $companyid;
@@ -201,13 +205,35 @@ if ($caneditall) {
 $companyselect = new single_select($linkurl, 'companyid', $companyids, $companyid);
 $companyselect->label = get_string('filtercompany', 'block_iomad_company_admin');
 echo html_writer::start_tag('div', array('class' => 'reporttablecontrolscontrol'));
+
+// SEB
+$options = array(
+  'own' => 'All Own Courses',
+  'private-shared' => 'Private & Shared',
+  'private-shared-public' => 'Private, Shared, Public',
+  'private' => 'Private Only',
+  'shared' => 'Shared Only',
+  'public' => 'Public Only',
+);
+
+if (!$shown) { $shown = 'own'; }
+
+$coursesShownSelect = new single_select($linkurl, 'shown', $options, $shown);
+$coursesShownSelect->label = "Courses Shown";
+
+if ($private) { $coursesShownSelect->disabled = true; }
+
 if ($canedit) {
+
     echo html_writer::tag('div', $OUTPUT->render($companyselect), array('id' => 'iomad_company_selector')).'<br>';
 }
 echo html_writer::start_tag('div', array('class' => 'searchcourseform'));
 $mform->display();
 echo html_writer::end_tag('div');
 echo html_writer::end_tag('div');
+
+echo html_writer::tag('div', $OUTPUT->render($coursesShownSelect), array('id' => 'iomad_courses_shown_selector')).'<br>'; // SEB
+
 echo html_writer::start_tag('div', array('class' => 'iomadclear'));
 
 $table = new \block_iomad_company_admin\tables\iomad_courses_table('iomad_courses_table');
@@ -224,10 +250,32 @@ if (!empty($companyid)) {
     if ($companyid == "none") {
         $companysql = " c.id NOT IN (SELECT courseid FROM {company_course}) ";
     } else {
-        $companysql = " (c.id IN (
-                          SELECT courseid FROM {company_course}
-                          WHERE companyid = :companyid)
-                         OR ic.shared = 1) ";
+        // When in "Edit mode", only see your courses for an organization. SEB
+        if ($private) {
+          $companysql = " cco.id = $companyid ";
+        }
+        else if ($shown === "private") {
+          $companysql = " (ic.shared = 0 and cco.id = vco.id) ";
+        }
+        else if ($shown === "public") {
+          $companysql = " (ic.shared = 1) ";
+        }
+        else if ($shown === "private-shared-public") {
+          $companysql = " ((ic.shared = 0 and cco.id = vco.id) or
+          (ic.shared = 1) or
+          (ic.shared = 2 and cc.companyid = vco.id)) ";
+        }
+        else if ($shown === "private-shared") {
+          $companysql = " ((ic.shared = 0 and cco.id = vco.id) or
+          (ic.shared = 2 and cc.companyid = vco.id)) ";
+        }
+        else if ($shown === "shared") {
+          $companysql = " (ic.shared = 2 and cc.companyid = vco.id) ";
+        }
+        else {
+          $companysql = " cco.id = $companyid ";
+        }
+
         $autoselect = ", cca.autoenrol AS autoenrol";
         $autofrom = " LEFT JOIN {company_course_autoenrol} cca ON (ic.courseid = cca.courseid AND cca.companyid = " . $companyid . ")";
     }
@@ -257,7 +305,15 @@ $selectsql = "ic.id,
               ic.hasgrade,
               '$companyid' AS companyid
               $autoselect";
-$fromsql = "{iomad_courses} ic JOIN {course} c ON (ic.courseid = c.id) $autofrom ";
+$fromsql = "{iomad_courses} ic";
+$fromsql .= " JOIN {course} c ON (ic.courseid = c.id)";
+$fromsql .= " left join {company_course} cc on cc.courseid = c.id";
+$fromsql .= " left join {company} vco on vco.id = $companyid";  // VIEWING company id
+$fromsql .= " left join {company_shared_courses} csc ON csc.courseid = cc.courseid and csc.companyid = cc.companyid and ic.shared = 2";
+$fromsql .= " left join {course_categories} ccat on ccat.id = c.category";
+$fromsql .= " left join {company} cco on cco.category = ccat.id";  // CREATOR company id
+
+$fromsql .= $autofrom . " ";
 $wheresql = "$companysql $searchsql";
 $sqlparams = $params;
 
@@ -286,14 +342,16 @@ $tablecolumns = ['company',
                  'notifyperiod',
                  'hasgrade'];
 if (!empty($companyid) && $companyid != "none") {
-    $tableheaders[] = get_string('autocourses', 'block_iomad_company_admin');
+    // $tableheaders[] = get_string('autocourses', 'block_iomad_company_admin');
+    $autoenrolHeader[] = get_string('autocourses', 'block_iomad_company_admin'); // SEB
+    array_splice($tableheaders, 4, 0, $autoenrolHeader);
     $tablecolumns[] = 'autoenrol';
 }
 
 // Can we manage the courses or just see them?
 if ($canedit) {
     // Do we show the action columns?
-    if (!empty($USER->editing)) {    
+    if (!empty($USER->editing)) {
         $tableheaders[] = '';
         $tablecolumns[] = 'actions';
     }
