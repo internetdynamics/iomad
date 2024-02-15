@@ -69,7 +69,7 @@ class courses_shared_editable extends \core\output\inplace_editable {
         $value = $currentvalue;
 
         // Remember these for the display value.
-        $this->sharedoptions = ['0' => get_string('no'),
+        $this->sharedoptions = ['0' => get_string('no', 'block_iomad_company_admin'), // SEB
                                  '1' => get_string('open', 'block_iomad_company_admin'),
                                  '2' => get_string('closed', 'block_iomad_company_admin')];
 
@@ -128,7 +128,7 @@ class courses_shared_editable extends \core\output\inplace_editable {
             throw new coding_exception('Course is not under IOMAD control');
         }
 
-        // Store the previous value for this course. 
+        // Store the previous value for this course.
         $previousshared = $courserec->shared
 ;
         // Check if we are sharing a course for the first time.

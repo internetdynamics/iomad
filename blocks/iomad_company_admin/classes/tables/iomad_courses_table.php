@@ -154,7 +154,7 @@ class iomad_courses_table extends table_sql {
     public function col_shared($row) {
         global $USER, $systemcontext, $company, $OUTPUT, $DB;
 
-        $sharedselectoptions = array('0' => get_string('no'),
+        $sharedselectoptions = array('0' => get_string('no', 'block_iomad_company_admin'), // SEB
                                     '1' => get_string('open', 'block_iomad_company_admin'),
                                     '2' => get_string('closed', 'block_iomad_company_admin'));
 
@@ -354,7 +354,7 @@ class iomad_courses_table extends table_sql {
         $actionsoutput = "";
 
         if (!empty($USER->editing)) {
-            if ($row->shared == 0 && 
+            if ($row->shared == 0 &&
                 (iomad::has_capability('block/iomad_company_admin:deletecourses', $systemcontext) ||
                 iomad::has_capability('block/iomad_company_admin:deletecourses', $systemcontext))) {
                 $linkurl = "/blocks/iomad_company_admin/iomad_courses_form.php";
@@ -368,7 +368,7 @@ class iomad_courses_table extends table_sql {
                 $actionsoutput = html_writer::start_tag('div');
                 $actionsoutput .= "<a href='$deleteurl'><i class='icon fa fa-trash fa-fw ' title='" . get_string('delete') . "' role='img' aria-label='" . get_string('delete') . "'></i></a>";
                 $actionsoutput .= html_writer::end_tag('div');
-    
+
             } else if (iomad::has_capability('block/iomad_company_admin:deleteallcourses', $systemcontext)) {
                 $linkurl = "/blocks/iomad_company_admin/iomad_courses_form.php";
                 $linkparams = $params;
