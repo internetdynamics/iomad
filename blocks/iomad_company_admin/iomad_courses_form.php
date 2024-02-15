@@ -214,6 +214,7 @@ $options = array(
   'private' => 'Private Only',
   'shared' => 'Shared Only',
   'public' => 'Public Only',
+  'hidden' => 'Hidden',
 );
 
 if (!$shown) { $shown = 'own'; }
@@ -255,25 +256,28 @@ if (!empty($companyid)) {
           $companysql = " cco.id = $companyid ";
         }
         else if ($shown === "private") {
-          $companysql = " (ic.shared = 0 and cco.id = vco.id) ";
+          $companysql = " (ic.shared = 0 and cco.id = vco.id) and c.visible = 1 ";
         }
         else if ($shown === "public") {
-          $companysql = " (ic.shared = 1) ";
+          $companysql = " (ic.shared = 1) and c.visible = 1 ";
         }
         else if ($shown === "private-shared-public") {
           $companysql = " ((ic.shared = 0 and cco.id = vco.id) or
           (ic.shared = 1) or
-          (ic.shared = 2 and cc.companyid = vco.id)) ";
+          (ic.shared = 2 and cc.companyid = vco.id)) and c.visible = 1 ";
         }
         else if ($shown === "private-shared") {
           $companysql = " ((ic.shared = 0 and cco.id = vco.id) or
-          (ic.shared = 2 and cc.companyid = vco.id)) ";
+          (ic.shared = 2 and cc.companyid = vco.id)) and c.visible = 1 ";
         }
         else if ($shown === "shared") {
-          $companysql = " (ic.shared = 2 and cc.companyid = vco.id) ";
+          $companysql = " (ic.shared = 2 and cc.companyid = vco.id) and c.visible = 1 ";
+        }
+        else if ($shown === "hidden") {
+          $companysql = " cco.id = $companyid and c.visible = 0 ";
         }
         else {
-          $companysql = " cco.id = $companyid ";
+          $companysql = " cco.id = $companyid and c.visible = 1 ";
         }
 
         $autoselect = ", cca.autoenrol AS autoenrol";
@@ -323,29 +327,31 @@ $tableheaders = [
     get_string('course'),
     get_string('licensed', 'block_iomad_company_admin') . $OUTPUT->help_icon('licensed', 'block_iomad_company_admin'),
     get_string('shared', 'block_iomad_company_admin')  . $OUTPUT->help_icon('shared', 'block_iomad_company_admin'),
+    get_string('hasgrade', 'block_iomad_company_admin') . $OUTPUT->help_icon('hasgrade', 'block_iomad_company_admin'),
     get_string('validfor', 'block_iomad_company_admin') . $OUTPUT->help_icon('validfor', 'block_iomad_company_admin'),
     get_string('expireafter', 'block_iomad_company_admin') . $OUTPUT->help_icon('expireafter', 'block_iomad_company_admin'),
     get_string('warnexpire', 'block_iomad_company_admin') . $OUTPUT->help_icon('warnexpire', 'block_iomad_company_admin'),
     get_string('warnnotstarted', 'block_iomad_company_admin') . $OUTPUT->help_icon('warnnotstarted', 'block_iomad_company_admin'),
     get_string('warncompletion', 'block_iomad_company_admin') . $OUTPUT->help_icon('warncompletion', 'block_iomad_company_admin'),
-    get_string('notifyperiod', 'block_iomad_company_admin') . $OUTPUT->help_icon('notifyperiod', 'block_iomad_company_admin'),
-    get_string('hasgrade', 'block_iomad_company_admin') . $OUTPUT->help_icon('hasgrade', 'block_iomad_company_admin')];
+    get_string('notifyperiod', 'block_iomad_company_admin') . $OUTPUT->help_icon('notifyperiod', 'block_iomad_company_admin')];
+
 $tablecolumns = ['company',
                  'coursename',
                  'licensed',
                  'shared',
+                 'hasgrade',
                  'validlength',
                  'expireafter',
                  'warnexpire',
                  'warnnotstarted',
                  'warncompletion',
-                 'notifyperiod',
-                 'hasgrade'];
+                 'notifyperiod'];
+
 if (!empty($companyid) && $companyid != "none") {
     // $tableheaders[] = get_string('autocourses', 'block_iomad_company_admin');
     $autoenrolHeader[] = get_string('autocourses', 'block_iomad_company_admin'); // SEB
     array_splice($tableheaders, 4, 0, $autoenrolHeader);
-    $tablecolumns[] = 'autoenrol';
+    array_splice($tablecolumns, 4, 0, ['autoenrol']);
 }
 
 // Can we manage the courses or just see them?
