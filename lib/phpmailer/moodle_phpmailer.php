@@ -41,6 +41,17 @@ defined('MOODLE_INTERNAL') || die();
  */
 class moodle_phpmailer extends \PHPMailer\PHPMailer\PHPMailer {
 
+    public $type;
+    public $SMTPDebug;
+    public $SMTPSecure;
+    public $AuthType;
+    public $smtpoauthservice;
+    public $Username;
+    public $Password;
+    public $smtpmaxbulk;
+    public $noreplyaddress;
+    public $DKIM_selector;
+
     /**
      * Constructor - creates an instance of the PHPMailer class
      * with Moodle defaults.
