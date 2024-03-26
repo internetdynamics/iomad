@@ -66,13 +66,50 @@ class main implements renderable, templatable {
         global $CFG, $USER, $PAGE;
 
         // Get the sorting params.
-        $sort = optional_param('sort', 'coursefullname', PARAM_CLEAN);
-        $dir = optional_param('dir', 'ASC', PARAM_CLEAN);
+        // $sort = optional_param('sort', 'coursefullname', PARAM_CLEAN);
+
+        $sort_name = optional_param('sort', '', PARAM_CLEAN);
+
+        $dir = "ASC";
+        $sort = "coursefullname";
+
+        if ($sort_name == "coursefullname-ASC") {
+          $sort = "coursefullname";
+          $dir = "ASC";
+        }
+        else if ($sort_name == "coursefullname-DESC") {
+          $sort = "coursefullname";
+          $dir = "DESC";
+        }
+        else if ($sort_name == "timestarted-ASC") {
+          $sort = "timestarted";
+          $dir = "ASC";
+        }
+        else if ($sort_name == "timestarted-DESC") {
+          $sort = "timestarted";
+          $dir = "DESC";
+        }
+
+        // $dir = optional_param('dir', 'ASC', PARAM_CLEAN);
         $tab = optional_param('tab', 'inprogress#mycourses_inprogress_view', PARAM_CLEAN);
         $view = optional_param('view', $CFG->mycourses_defaultview, PARAM_CLEAN);
+        $shown = optional_param('shown', 'own', PARAM_CLEAN); // SEB
+
+        // SEB
+        $shownBtnNames = array(
+          'own'  => 'All Own Courses',
+          'private-shared' => 'Private & Shared',
+          'private-shared-public'  => 'Private, Shared, Pubic',
+          'private'  => 'Private Only',
+          'shared'  => 'Shared Only',
+          'public'  => 'Public Only',
+          'hidden'  => 'Hidden',
+        );
+
+        $shownBtnName = $shownBtnNames[$shown];
 
         // Get the completion info.
-        $mycompletion = mycourses_get_my_completion($sort, $dir);
+        $mycompletion = mycourses_get_my_completion($sort, $dir, $shown); // SEB
         $myarchive = mycourses_get_my_archive($sort, $dir);
 
         $availableview = new available_view($mycompletion);
@@ -90,13 +127,37 @@ class main implements renderable, templatable {
         } else {
             $viewinginprogress = true;
         }
+
+        // SEB
         $nocoursesurl = $output->image_url('courses', 'block_mycourses')->out();
-        $sortnameurl = new moodle_url($PAGE->url->out(false), ['sort' => 'coursefullname', 'dir' => $dir, 'tab' => $this->tab, 'view' => $view]);
-        $sortdateurl = new moodle_url($PAGE->url->out(false), ['sort' => 'timestarted', 'dir' => $dir, 'tab' => $this->tab, 'view' => $view]);
-        $sortascurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => 'ASC', 'tab' => $this->tab, 'view' => $view]);
-        $sortdescurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => 'DESC', 'tab' => $this->tab, 'view' => $view]);
-        $listviewurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir, 'tab' => $this->tab, 'view' => 'list']);
-        $cardviewurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir, 'tab' => $this->tab, 'view' => 'card']);
+        $sortnameurlasc = new moodle_url($PAGE->url->out(false), ['sort' => 'coursefullname-ASC', 'dir' => 'ASC', 'tab' => $this->tab, 'view' => $view, 'shown' => $shown]);
+        $sortnameurldesc = new moodle_url($PAGE->url->out(false), ['sort' => 'coursefullname-DESC', 'dir' => 'DESC', 'tab' => $this->tab, 'view' => $view, 'shown' => $shown]);
+        $sortdateurlasc = new moodle_url($PAGE->url->out(false), ['sort' => 'timestarted-ASC', 'dir' => 'ASC', 'tab' => $this->tab, 'view' => $view, 'shown' => $shown]);
+        $sortdateurldesc = new moodle_url($PAGE->url->out(false), ['sort' => 'timestarted-DESC', 'dir' => 'DESC', 'tab' => $this->tab, 'view' => $view, 'shown' => $shown]);
+        // $sortascurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => 'ASC', 'tab' => $this->tab, 'view' => $view, 'shown' => $shown]);
+        // $sortdescurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => 'DESC', 'tab' => $this->tab, 'view' => $view, 'shown' => $shown]);
+        $listviewurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir, 'tab' => $this->tab, 'view' => 'list', 'shown' => $shown]);
+        $cardviewurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir, 'tab' => $this->tab, 'view' => 'card', 'shown' => $shown]);
+
+        // SEB
+        $shownOwnUrl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir,
+          'tab' => $this->tab, 'view' => $view, 'shown' => 'own']);
+
+        $shownprivatesharedurl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir,
+          'tab' => $this->tab, 'view' => $view, 'shown' => 'private-shared']);
+
+        $shownPrivateSharedPublicUrl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir,
+          'tab' => $this->tab, 'view' => $view, 'shown' => 'private-shared-public']);
+
+        $shownPrivateUrl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir,
+          'tab' => $this->tab, 'view' => $view, 'shown' => 'private']);
+
+        $shownSharedUrl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir,
+          'tab' => $this->tab, 'view' => $view, 'shown' => 'shared']);
+
+        $shownPublicUrl = new moodle_url($PAGE->url->out(false), ['sort' => $sort, 'dir' => $dir,
+          'tab' => $this->tab, 'view' => $view, 'shown' => 'public']);
+
         $viewlist = false;
         $viewcard = false;
         if ($view == 'list') {
@@ -115,14 +176,23 @@ class main implements renderable, templatable {
             'viewingavailable' => $viewingavailable,
             'viewinginprogress' => $viewinginprogress,
             'viewingcompleted' => $viewingcompleted,
-            'sortnameurl' => $sortnameurl->out(false),
-            'sortdateurl' => $sortdateurl->out(false),
-            'sortascurl' => $sortascurl->out(false),
-            'sortdescurl' => $sortdescurl->out(false),
+            'sortnameurlasc' => $sortnameurlasc->out(false),
+            'sortnameurldesc' => $sortnameurldesc->out(false),
+            'sortdateurlasc' => $sortdateurlasc->out(false),
+            'sortdateurldesc' => $sortdateurldesc->out(false),
+            // 'sortascurl' => $sortascurl->out(false),
+            // 'sortdescurl' => $sortdescurl->out(false),
             'listviewurl' => $listviewurl->out(false),
             'cardviewurl' => $cardviewurl->out(false),
             'viewlist' => $viewlist,
             'viewcard' => $viewcard,
+            'shownBtnName' => $shownBtnName, // SEB
+            'shownOwnUrl' => $shownOwnUrl->out(false),
+            'shownprivatesharedurl' => $shownprivatesharedurl->out(false),
+            'shownPrivateSharedPublicUrl' => $shownPrivateSharedPublicUrl->out(false),
+            'shownPrivateUrl' => $shownPrivateUrl->out(false),
+            'shownSharedUrl' => $shownSharedUrl->out(false),
+            'shownPublicUrl' => $shownPublicUrl->out(false),
         ];
     }
 }

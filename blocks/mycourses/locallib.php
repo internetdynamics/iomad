@@ -23,18 +23,44 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC') {
+function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC', $shown) { // SEB
     global $DB, $USER, $CFG;
 
     $companyid = iomad::get_my_companyid(context_system::instance(), false);
 
     // Do we need to tie courses down to only my company courses?
     $companycoursesql = "";
-    if (!empty($companyid)) {
-        $company = new company($companyid);
-        $companycourses = $company->get_menu_courses(true);
-        $companycoursesql = "AND cc.courseid IN (" . join(',', array_keys($companycourses)) . ")";
-    } 
+    if (!empty($companyid)) { // SEB
+        // $company = new company($companyid);
+        // $companycourses = $company->get_menu_courses(true);
+        // $companycoursesql = "AND cc.courseid IN (" . join(',', array_keys($companycourses)) . ")";
+
+        if ($companyid == "none") {
+          $companycoursesql = " and c.id NOT IN (SELECT courseid FROM {company_course}) ";
+        } else {
+          if ($shown === "private") {
+            $companycoursesql = " and (ic.shared = 0 and cco.id = vco.id) and c.visible = 1 ";
+          }
+          else if ($shown === "public") {
+            $companycoursesql = " and (ic.shared = 1) and c.visible = 1 ";
+          }
+          else if ($shown === "private-shared-public") {
+            $companycoursesql = " and ((ic.shared = 0 and cco.id = vco.id) or
+            (ic.shared = 1) or
+            (ic.shared = 2 and cc.companyid = vco.id)) and c.visible = 1 ";
+          }
+          else if ($shown === "private-shared") {
+            $companycoursesql = " and ((ic.shared = 0 and cco.id = vco.id) or
+            (ic.shared = 2 and cc.companyid = vco.id)) and c.visible = 1 ";
+          }
+          else if ($shown === "shared") {
+            $companycoursesql = " and (ic.shared = 2 and cc.companyid = vco.id) and c.visible = 1 ";
+          }
+          else {
+            $companycoursesql = " and cco.id = $companyid and c.visible = 1 ";
+          }
+      }
+    }
 
     // Check if there is a iomadcertificate module.
     if ($certmodule = $DB->get_record('modules', array('name' => 'iomadcertificate'))) {
@@ -45,18 +71,32 @@ function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC') {
     }
 
     $mycompletions = new stdclass();
+    $course_filter_sql = "
+      and (
+        (ic.shared = 0 and cco.id = vco.id) or     -- private.
+        (ic.shared = 1) or                         -- open sharing.
+        (ic.shared = 2 and cc.companyid = vco.id)  -- closed sharing.
+      )
+    "; // SEB
+
     $myinprogress = $DB->get_records_sql("SELECT DISTINCT cc.id, cc.userid, cc.courseid as courseid, c.fullname as coursefullname, c.summary as coursesummary, c.visible, ic.hasgrade, cc.timestarted, cc.modifiedtime
                                           FROM {local_iomad_track} cc
                                           JOIN {course} c ON (c.id = cc.courseid)
                                           JOIN {user_enrolments} ue ON (ue.userid = cc.userid)
                                           JOIN {enrol} e ON (e.id = ue.enrolid AND e.courseid = c.id)
                                           LEFT JOIN {iomad_courses} ic ON (c.id = ic.courseid AND cc.courseid = ic.courseid)
+                                          LEFT JOIN mdl_company vco ON vco.id = $companyid
+                                          left join mdl_course_categories ccat on ccat.id = c.category
+                                          left join mdl_company cco on cco.category = ccat.id  -- CREATOR company id
                                           WHERE cc.userid = :userid
                                           $companycoursesql
                                           AND c.visible = 1
                                           AND cc.timecompleted IS NULL
                                           AND ue.timestart != 0",
-                                          array('userid' => $USER->id));
+                                          array('userid' => $USER->id),0,0,true); // SEB
+
+    // error_log("============================================================== myinprogress");
+    // error_log(var_export($myinprogress, true));
 
     // We need to de-duplicate this list.
     $recs = [];
@@ -64,6 +104,7 @@ function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC') {
     foreach ($myinprogress as $rec) {
         $myrecs[$rec->courseid] = $rec;
     }
+
     $myinprogress = [];
     foreach ($myrecs as $rec) {
         $myinprogress[$rec->id] = $rec;
@@ -83,6 +124,7 @@ function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC') {
 
     // Get courses which are available as self sign up and assigned to the company.
     // First we discount everything else we have in progress.
+    // SEB - This removes courses from available
     $myusedcourses = array();
     foreach ($myinprogress as $id => $inprogress) {
         $myinprogress[$id]->coursefullname = format_string($inprogress->coursefullname);
@@ -91,45 +133,65 @@ function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC') {
             $myinprogress[$id]->finalgrade = "";
         }
     }
+
     if (!empty($myusedcourses)) {
         $inprogresssql = "AND c.id NOT IN (" . join(',', array_keys($myusedcourses)) . ")";
     } else {
         $inprogresssql = "";
     }
+
     $myselfenrolcourses = array();
     $myavailablecourses = array();
+
+    $from = "
+    LEFT JOIN mdl_iomad_courses ic ON (c.id = ic.courseid)
+    LEFT JOIN mdl_company vco ON vco.id = 25
+    left join mdl_company_shared_courses cc on cc.companyid = vco.id and cc.courseid = c.id
+    left join mdl_course_categories ccat on ccat.id = c.category
+    left join mdl_company cco on cco.category = ccat.id  -- CREATOR company id";
+
+
+
     if (!empty($companyid)) {
         $companyselfenrolcourses = $DB->get_records_sql("SELECT e.id,e.courseid,c.fullname as coursefullname, c.summary as coursesummary
                                                          FROM {enrol} e
                                                          JOIN {course} c ON (e.courseid = c.id)
+                                                         $from
                                                          WHERE e.enrol = :enrol
                                                          AND e.status = 0
                                                          AND c.id IN (
                                                            SELECT courseid FROM {company_course}
                                                            WHERE companyid = :companyid)
                                                          AND c.visible = 1
+                                                         $companycoursesql
                                                          $inprogresssql",
                                                          array('companyid' => $companyid,
-                                                               'enrol' => 'self'));
+                                                               'enrol' => 'self'),0,0,true); // SEB
+
         $sharedselfenrolcourses = $DB->get_records_sql("SELECT e.id,e.courseid,c.fullname as coursefullname, c.summary as coursesummary
                                                         FROM {enrol} e
                                                         JOIN {course} c ON (e.courseid = c.id)
+                                                        $from
                                                         WHERE e.enrol = :enrol
                                                          AND e.status = 0
                                                          AND c.id IN (
                                                            SELECT courseid FROM {iomad_courses}
                                                            WHERE shared = 1)
                                                          AND c.visible = 1
+                                                         $companycoursesql
                                                         $inprogresssql",
-                                                        array('enrol' => 'self'));
+                                                        array('enrol' => 'self'),0,0,true); // SEB
+
         foreach ($companyselfenrolcourses as $companyselfenrolcourse) {
             $companyselfenrolcourse->coursefullname = format_string($companyselfenrolcourse->coursefullname);
             $myavailablecourses[$companyselfenrolcourse->coursefullname] = $companyselfenrolcourse;
         }
+
         foreach ($sharedselfenrolcourses as $sharedselfenrolcourse) {
             $sharedselfenrolcourse->coursefullname = format_string($sharedselfenrolcourse->coursefullname);
             $myavailablecourses[$sharedselfenrolcourse->coursefullname] = $sharedselfenrolcourse;
         }
+
         // Check if there are any courses from 'blanket' licenses.
         if ($blanketlicenses = $DB->get_records_sql("SELECT * FROM {companylicense}
                                                      WHERE companyid = :companyid
@@ -162,6 +224,9 @@ function mycourses_get_my_completion($sort = 'coursefullname', $dir = 'ASC') {
     // Put them into alpahbetical order.
     $myavailablecourses = mycourses_sort($myavailablecourses, 'coursefullname', $dir);
     $myinprogress = mycourses_sort($myinprogress, $sort, $dir);
+
+    error_log("============================================================== myavailablecourses");
+    error_log(var_export($myavailablecourses, true));
 
     $mycompletions->myinprogress = $myinprogress;
     $mycompletions->mynotstartedenrolled = array();

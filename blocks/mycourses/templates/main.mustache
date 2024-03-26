@@ -34,21 +34,13 @@
     </a>
 
     <div class="dropdown-menu" aria-labelledby="mycoursesdropdownMenuLink">
-      <a class="dropdown-item" href="{{sortnameurl}}">{{#str}} name {{/str}}</a>
-      <a class="dropdown-item" href="{{sortdateurl}}">{{#str}} date {{/str}}</a>
+       <a class="dropdown-item" href="{{sortnameurlasc}}">Name - ASC</a>
+       <a class="dropdown-item" href="{{sortnameurldesc}}">Name - DESC</a>
+       <a class="dropdown-item" href="{{sortdateurlasc}}">Date - ASC</a>
+       <a class="dropdown-item" href="{{sortdateurldesc}}">Date - DESC</a>
     </div>
   </div>
   <div class="dropdown show" style='padding-right: 5px'>
-    <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="mycoursesdropdownMenuLinkorder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      {{#str}} order {{/str}}
-    </a>
-
-    <div class="dropdown-menu" aria-labelledby="mycoursesdropdownMenuLinkorder">
-      <a class="dropdown-item" href="{{sortascurl}}">{{#str}} asc {{/str}}</a>
-      <a class="dropdown-item" href="{{sortdescurl}}">{{#str}} desc {{/str}}</a>
-    </div>
-  </div>
-  <div class="dropdown show">
     <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="mycoursesdropdownMenuLinktype" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {{#viewlist}}
           {{#str}} list, block_myoverview {{/str}}
@@ -61,6 +53,19 @@
     <div class="dropdown-menu" aria-labelledby="mycoursesdropdownMenuLinktype">
       <a class="dropdown-item" href="{{listviewurl}}">{{#str}} list, block_myoverview {{/str}}</a>
       <a class="dropdown-item" href="{{cardviewurl}}">{{#str}} card, block_myoverview {{/str}}</a>
+    </div>
+  </div>
+  <div class="dropdown show">
+    <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="mycoursesdropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       {{shownBtnName}}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="mycoursesdropdownMenuLink">
+      <a class="dropdown-item" href="{{shownOwnUrl}}">All Own Courses</a>
+       <a class="dropdown-item" href="{{shownprivatesharedurl}}">Private & Shared</a>
+       <a class="dropdown-item" href="{{shownPrivateSharedPublicUrl}}">Private, Shared, Public</a>
+       <a class="dropdown-item" href="{{shownPrivateUrl}}">Private Only</a>
+       <a class="dropdown-item" href="{{shownSharedUrl}}">Shared Only</a>
+       <a class="dropdown-item" href="{{shownPublicUrl}}">Public Only</a>
     </div>
   </div>
 </div>
