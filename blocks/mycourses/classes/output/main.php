@@ -99,7 +99,7 @@ class main implements renderable, templatable {
         $shownBtnNames = array(
           'own'  => 'All Own Courses',
           'private-shared' => 'Private & Shared',
-          'private-shared-public'  => 'Private, Shared, Pubic',
+          'private-shared-public'  => 'Private, Shared, Public',
           'private'  => 'Private Only',
           'shared'  => 'Shared Only',
           'public'  => 'Public Only',
